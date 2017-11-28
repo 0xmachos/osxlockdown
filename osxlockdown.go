@@ -127,9 +127,9 @@ func main() {
 	}
 
 	// Check OS version to make sure we will work
-	osVersion := GetCommandOutput("system_profiler SPSoftwareDataType | grep \"System Version\" | cut -d: -f2")
-	if !strings.Contains(osVersion, "OS X 10.11") {
-		fmt.Println("ERROR: Unsupported OS. This tool was meant to be used only on OSX 10.11 (El Capitan)")
+	osVersion := GetCommandOutput("system_profiler SPSoftwareDataType | grep 'System Version' | awk -F ' ' '{print $4}'")
+	if !strings.Contains(osVersion, "10.13") {
+		fmt.Println("ERROR: Unsupported OS. This tool was meant to be used only on macOS 10.13 (High Sierra)")
 		return
 	}
 
